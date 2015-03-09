@@ -259,60 +259,140 @@ React.render(
 
 				<section>
 				  <section>
-          <div id='search-div'></div>
+          <div id='filter-div'></div>
             <script type="text/jsx">
-var SearchExample = React.createClass({
-    getInitialState: function(){
-        return { searchString: '' };
-    },
-    handleChange: function(e){
-        this.setState({searchString:e.target.value});
-    },
-    render: function() {
-        var libraries = this.props.items,
-            searchString = this.state.searchString.trim().toLowerCase();
-        if(searchString.length > 0){
-            libraries = libraries.filter(function(l){
-                return l.name.toLowerCase().match( searchString );
-            });
-        }
-
-        return <div>
-                    <input type="text" value={this.state.searchString} onChange={this.handleChange} placeholder="Type here" />
-                    <ul>
-                        { libraries.map(function(l){
-                            return <li>{l.name} <a href={l.url}>{l.url}</a></li>
-                        }) }
-                    </ul>
-                </div>;
+var Filter = React.createClass({
+  getInitialState: function(){
+    return { filterString: '' };
+  },
+  handleChange: function(e){
+    this.setState({filterString:e.target.value});
+  },
+  render: function() {
+    var libraries = this.props.items,
+      filterString = this.state.filterString.trim().toLowerCase();
+    if(filterString.length > 0){
+      libraries = libraries.filter(function(l){
+        return l.name.toLowerCase().match( filterString );
+      });
     }
+    return <div>
+      <input type="text" value={this.state.filterString} onChange={this.handleChange} placeholder="Type to filter" />
+      <ul>
+        { libraries.map(function(l){
+          return <li>{l.name} <a href={l.url}>{l.url}</a></li>
+          }) }
+        </ul>
+      </div>;
+  }
 });
 
 var libraries = [
-    { name: 'alt', url: 'https://github.com/goatslacker/alt' },
-    { name: 'Barracks', url: 'https://github.com/yoshuawuyts/barracks' },
-    { name: 'Delorean', url: 'https://github.com/deloreanjs/delorean' },
-    { name: 'Fluxify', url: 'https://github.com/arqex/fluxify' },
-    { name: 'Flux', url: 'https://github.com/facebook/flux' },
-    { name: 'Fluxxor', url: 'https://github.com/BinaryMuse/fluxxor' },
-    { name: 'Fluxy', url: 'https://github.com/jmreidy/fluxy' },
-    { name: 'Fynx', url: 'https://github.com/jmreidy/fluxy' },
-    { name: 'marty', url: 'https://github.com/jhollingworth/marty' },
-    { name: 'McFly', url: 'https://github.com/kenwheeler/mcfly' },
-    { name: 'Reflux', url: 'https://github.com/spoike/refluxjs' },
+  { name: 'alt', url: 'https://github.com/goatslacker/alt' },
+  { name: 'Barracks', url: 'https://github.com/yoshuawuyts/barracks' },
+  { name: 'Delorean', url: 'https://github.com/deloreanjs/delorean' },
+  { name: 'Fluxify', url: 'https://github.com/arqex/fluxify' },
+  { name: 'Flux', url: 'https://github.com/facebook/flux' },
+  { name: 'Fluxxor', url: 'https://github.com/BinaryMuse/fluxxor' },
+  { name: 'Fluxy', url: 'https://github.com/jmreidy/fluxy' },
+  { name: 'Fynx', url: 'https://github.com/jmreidy/fluxy' },
+  { name: 'marty', url: 'https://github.com/jhollingworth/marty' },
+  { name: 'McFly', url: 'https://github.com/kenwheeler/mcfly' },
+  { name: 'Reflux', url: 'https://github.com/spoike/refluxjs' },
 ];
 
-React.renderComponent(
-    <SearchExample items={ libraries } />,
-    document.getElementById('search-div')
+React.render(
+  <Filter items={ libraries } />,
+  document.getElementById('filter-div')
 );
             </script>
-        </section>
+          </section>
 
-				<section>
+          <section>
+            <pre><code data-trim contenteditable>
+var Filter = React.createClass({
+
+  getInitialState: function(){
+    return { filterString: '' };
+  },
+
+  handleChange: function(e){
+    this.setState({filterString:e.target.value});
+  },
+            </code></pre>
+          </section>
+
+          <section data-markdown>
+            <script type="text/template">
+```
+  render: function() {
+    var libraries = this.props.items,
+      filterString = this.state.filterString.trim().toLowerCase();
+    if(filterString.length > 0){
+      libraries = libraries.filter(function(l){
+        return l.name.toLowerCase().match( filterString );
+      });
+    }
+```
+            </script>
+          </section>
+
+          <section data-markdown>
+            <script type="text/template">
+```
+    return
+      <div>
+        <input type="text"
+               value={this.state.filterString}
+               onChange={this.handleChange}
+               placeholder="Type to filter" />
+        <ul>
+          {
+            libraries.map(function(l){
+              return <li>{l.name} <a href={l.url}>{l.url}</a></li>
+            })
+          }
+        </ul>
+      </div>;
+  }
+});
+```
+            </script>
+          </section>
+
+          <section data-transition="none" data-markdown>
+            <script type="text/template">
+```
+React.render(
+  <Filter items={ libraries } />,
+  document.getElementById('filter-div')
+);
+```
+            </script>
+          </section>
+
+          <section data-markdown>
+            <script type="text/template">
+```
+var libraries = [
+  { name: 'alt', url: 'https://github.com/goatslacker/alt' },
+  { name: 'Barracks', url: 'https://github.com/yoshuawuyts/barracks' },
+  { name: 'Delorean', url: 'https://github.com/deloreanjs/delorean' },
+  { name: 'Fluxify', url: 'https://github.com/arqex/fluxify' },
+  { name: 'Flux', url: 'https://github.com/facebook/flux' },
+  { name: 'Fluxxor', url: 'https://github.com/BinaryMuse/fluxxor' },
+  { name: 'Fluxy', url: 'https://github.com/jmreidy/fluxy' },
+  { name: 'Fynx', url: 'https://github.com/jmreidy/fluxy' },
+  { name: 'marty', url: 'https://github.com/jhollingworth/marty' },
+  { name: 'McFly', url: 'https://github.com/kenwheeler/mcfly' },
+  { name: 'Reflux', url: 'https://github.com/spoike/refluxjs' },
+];
+
+```
+            </script>
+          </section>
 
 				</section>
-
 
 
 

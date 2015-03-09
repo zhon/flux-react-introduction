@@ -23,6 +23,17 @@ Nested components inside of other components
 
 You are creating a UI as a tree of functions.
 
+## Flex/React terms
+- component
+- reconciliation
+- JSX
+- props
+- state
+- action
+
+
+
+
 ### Building with React
 
 1. Start with the UI design
@@ -30,7 +41,7 @@ You are creating a UI as a tree of functions.
 
 ### React Speed
 
-[]reconcilliation](http://facebook.github.io/react/docs/reconciliation.html)
+[reconciliation](http://facebook.github.io/react/docs/reconciliation.html)
 
 react pure mixin
 
