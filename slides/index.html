@@ -189,31 +189,133 @@ React.render(
           </section>
 				</section>
 
-				<!-- Example of nested vertical slides -->
 				<section>
-					<section>
-						<h2>Vertical Slides</h2>
-						<p>Slides can be nested inside of each other.</p>
-						<p>Use the <em>Space</em> key to navigate through all slides.</p>
-						<br>
-						<a href="#" class="navigate-down">
-							<img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-						</a>
-					</section>
+				  <section>
+          <div id='timer-div'></div>
+            <script type="text/jsx">
+var Timer = React.createClass({
+  getInitialState: function(){
+      return { elapsed: 0 };
+  },
+  componentDidMount: function(){
+      this.timer = setInterval(this.tick, 100);
+  },
+  componentWillUnmount: function(){
+      clearInterval(this.timer);
+  },
+  tick: function(){
+      this.setState({elapsed: new Date() - this.props.start});
+  },
+  render: function() {
+      var seconds = (this.state.elapsed / 1000).toFixed(1);
+      return <p>This timer was started <b>{seconds} seconds</b> ago.</p>;
+  }
+});
 
-					<section>
-						<h2>Basement Level 1</h2>
-						<p>Nested slides are useful for adding additional detail underneath a high level horizontal slide.</p>
-					</section>
-					<section>
-						<h2>Basement Level 2</h2>
-						<p>That's it, time to go back up.</p>
-						<br>
-						<a href="#/2">
-							<img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Up arrow" style="-webkit-transform: rotate(180deg);">
-						</a>
-					</section>
+React.render(
+    <Timer start={Date.now()} />,
+    document.getElementById('timer-div')
+);
+            </script>
+          </section>
+				  <section>
+            <pre><code data-trim contenteditable>
+var Timer = React.createClass({
+  getInitialState: function(){
+    return { elapsed: 0 };
+  },
+  componentDidMount: function(){
+    this.timer = setInterval(this.tick, 100);
+  },
+  componentWillUnmount: function(){
+    clearInterval(this.timer);
+  },
+  tick: function(){
+    this.setState({elapsed: new Date() - this.props.start});
+  },
+            </code></pre>
+          </section>
+				  <section>
+            <pre><code data-trim contenteditable>
+  render: function() {
+    var seconds = (this.state.elapsed / 1000).toFixed(1);
+    return <p>Timer was started <b>{seconds} seconds</b> ago.</p>;
+  }
+});
+            </code></pre>
+
+          </section>
+          <section data-transition="none" data-markdown>
+            <script type="text/template">
+```
+React.render(
+    <Timer start={Date.now()} />,
+    document.getElementById('timer-div')
+);
+```
+            </script>
+          </section>
+        </section>
+
+				<section>
+				  <section>
+          <div id='search-div'></div>
+            <script type="text/jsx">
+var SearchExample = React.createClass({
+    getInitialState: function(){
+        return { searchString: '' };
+    },
+    handleChange: function(e){
+        this.setState({searchString:e.target.value});
+    },
+    render: function() {
+        var libraries = this.props.items,
+            searchString = this.state.searchString.trim().toLowerCase();
+        if(searchString.length > 0){
+            libraries = libraries.filter(function(l){
+                return l.name.toLowerCase().match( searchString );
+            });
+        }
+
+        return <div>
+                    <input type="text" value={this.state.searchString} onChange={this.handleChange} placeholder="Type here" />
+                    <ul>
+                        { libraries.map(function(l){
+                            return <li>{l.name} <a href={l.url}>{l.url}</a></li>
+                        }) }
+                    </ul>
+                </div>;
+    }
+});
+
+var libraries = [
+    { name: 'alt', url: 'https://github.com/goatslacker/alt' },
+    { name: 'Barracks', url: 'https://github.com/yoshuawuyts/barracks' },
+    { name: 'Delorean', url: 'https://github.com/deloreanjs/delorean' },
+    { name: 'Fluxify', url: 'https://github.com/arqex/fluxify' },
+    { name: 'Flux', url: 'https://github.com/facebook/flux' },
+    { name: 'Fluxxor', url: 'https://github.com/BinaryMuse/fluxxor' },
+    { name: 'Fluxy', url: 'https://github.com/jmreidy/fluxy' },
+    { name: 'Fynx', url: 'https://github.com/jmreidy/fluxy' },
+    { name: 'marty', url: 'https://github.com/jhollingworth/marty' },
+    { name: 'McFly', url: 'https://github.com/kenwheeler/mcfly' },
+    { name: 'Reflux', url: 'https://github.com/spoike/refluxjs' },
+];
+
+React.renderComponent(
+    <SearchExample items={ libraries } />,
+    document.getElementById('search-div')
+);
+            </script>
+        </section>
+
+				<section>
+
 				</section>
+
+
+
+
 
 				<section>
 					<h2>Point of View</h2>

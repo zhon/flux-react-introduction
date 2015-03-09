@@ -4,6 +4,11 @@ Presentation on Flux and React.js for Code Camp 2015
 Notes
 -----
 
+React
+- fast
+- testable
+- simple
+
 Why I love React
 - Put the smarts back in the developer
 - Testable without mocking everything
@@ -66,9 +71,27 @@ http://facebook.github.io/react/docs/events.html
 
 ### Flux
 
-McFly? Fluxxor
+#### Implementations
+* alt
+* Barracks
+* Delorean
+* Fluxify
+* Flux
+* Fluxxor
+* Fluxy
+* Fynx
+* marty.js
+* McFly
+* Reflux
 
 Riot application?
+
+## Routing
+
+* react-router
+* react-router-component
+* director
+
 
 ## Components
 
