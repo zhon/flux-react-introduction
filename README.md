@@ -54,6 +54,14 @@ You are creating a UI as a tree of functions.
 
 react pure mixin
 
+### Virtual DOM (and event system)
+
+On every update...
+- React builds a new virtual DOM subtree
+- ...diffs it with the old one
+- ...computes the minimal set of DOM mutations and puts them in a queue
+- ...and batch executes all updates
+
 ### JSX
 - not a templete engine
 - compiles directly to js
@@ -162,6 +170,24 @@ initialArray is still [1, 2, 3].
 [Immutable-js](https://github.com/facebook/immutable-js)
 
 
+## Take aways
+
+- Components not templates
+- Re-render don't mutate
+- Virtual DOM is simple and fast
+
+## Best pratices
+
+- Use PureRenderMixin
+- Use PropTypes
+- Avoid State
+- Centralize State
+- Do more in render()
+- Use mixins
+- Ok to use instant properties for events (not render)
+- Think in Elements
+
+http://aeflash.com/2015-02/react-tips-and-best-practices.html
 
 
 
