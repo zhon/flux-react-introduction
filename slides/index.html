@@ -198,12 +198,12 @@ var Timer = React.createClass({
       return { elapsed: 0 };
   },
   componentDidMount: function(){
-      this.timer = setInterval(this.tick, 100);
+      this.timer = setInterval(this._tick, 100);
   },
   componentWillUnmount: function(){
       clearInterval(this.timer);
   },
-  tick: function(){
+  _tick: function(){
       this.setState({elapsed: new Date() - this.props.start});
   },
   render: function() {
@@ -225,12 +225,12 @@ var Timer = React.createClass({
     return { elapsed: 0 };
   },
   componentDidMount: function(){
-    this.timer = setInterval(this.tick, 100);
+    this.timer = setInterval(this._tick, 100);
   },
   componentWillUnmount: function(){
     clearInterval(this.timer);
   },
-  tick: function(){
+  _tick: function(){
     this.setState({elapsed: new Date() - this.props.start});
   },
             </code></pre>
@@ -265,7 +265,7 @@ var Filter = React.createClass({
   getInitialState: function(){
     return { filterString: '' };
   },
-  handleChange: function(e){
+  _handleChange: function(e){
     this.setState({filterString:e.target.value});
   },
   render: function() {
@@ -277,7 +277,7 @@ var Filter = React.createClass({
       });
     }
     return <div>
-      <input type="text" value={this.state.filterString} onChange={this.handleChange} placeholder="Type to filter" />
+      <input type="text" value={this.state.filterString} onChange={this._handleChange} placeholder="Type to filter" />
       <ul>
         { libraries.map(function(l){
           return <li>{l.name} <a href={l.url}>{l.url}</a></li>
@@ -316,7 +316,7 @@ var Filter = React.createClass({
     return { filterString: '' };
   },
 
-  handleChange: function(e){
+  _handleChange: function(e){
     this.setState({filterString:e.target.value});
   },
             </code></pre>
@@ -344,7 +344,7 @@ var Filter = React.createClass({
       <div>
         <input type="text"
                value={this.state.filterString}
-               onChange={this.handleChange}
+               onChange={this._handleChange}
                placeholder="Type to filter" />
         <ul>
           {

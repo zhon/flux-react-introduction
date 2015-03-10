@@ -30,8 +30,17 @@ You are creating a UI as a tree of functions.
 - props
 - state
 - action
+- immutable
+- store
+- key
+- mixins
+- dispatcher
+- render
+- callback
 
-
+## web terms
+- router
+- 
 
 
 ### Building with React
